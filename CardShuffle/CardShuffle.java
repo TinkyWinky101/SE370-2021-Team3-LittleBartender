@@ -49,7 +49,7 @@ public class CardShuffle extends JPanel{
                 //    }else if(value == 12) {
                 //        cards[suit][value] = "King" + faces[suit] + ".png";  
                 //    }else {
-                //        cards[suit][value] = (value + 1) + faces[suit] +".png";
+                //       cards[suit][value] = (value + 1) + faces[suit] +".png";
                 //    }
 
                }  
