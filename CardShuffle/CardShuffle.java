@@ -49,11 +49,7 @@ public class CardShuffle extends JPanel{
                 //    }else if(value == 12) {
                 //        cards[suit][value] = "King" + faces[suit] + ".png";  
                 //    }else {
-<<<<<<< HEAD
-                //       cards[suit][value] = (value + 1) + faces[suit] +".png";
-=======
                 //        cards[suit][value] = (value + 1) + faces[suit] +".png";
->>>>>>> testingRangeTyler
                 //    }
 
                }  
@@ -124,4 +120,5 @@ public class CardShuffle extends JPanel{
     //    window.setForeground(Color.GREEN);
        window.setVisible(true);
    }
+
 }
