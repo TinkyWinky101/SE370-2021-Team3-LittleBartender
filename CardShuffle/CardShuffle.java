@@ -1,102 +1,94 @@
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.Image;
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import java.awt.Dimension;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.util.Random;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-
-
-import javax.swing.JPanel;
-
 public class CardShuffle extends JPanel{
    private JPanel[][] board = new JPanel[4][13];
+   String cardFront[] = new String[]{"Clubs","Diamonds","Hearts","Spades"};
    String cards[][];
+   Random randomNum = new Random();
 
    public CardShuffle() {
-           setPreferredSize(new Dimension(600, 1976));
+    setBackground( new Color(0,153,0));
+           setPreferredSize(new Dimension(300, 988));
            setLayout(new GridLayout(5, 13));
-
            cards = new String[4][13];
-           String faces[] = new String[]{"Clubs","Diamonds","Hearts","Spades"};
            for(int suit = 0; suit < 4; suit++) {
-               for(int value = 0; value < 13;value++) {
-                   if(value == 0) {
-                       cards[suit][value] = "Ace" + faces[suit] + ".png";  
-                   }else if(value == 10) {
-                       cards[suit][value] = "Jack" + faces[suit] + ".png";  
-                   }else if(value == 11) {
-                       cards[suit][value]= "Queen" + faces[suit] + ".png";  
-                   }else if(value == 12) {
-                       cards[suit][value] = "King" + faces[suit] + ".png";  
-                   }else {
-                       cards[suit][value] = (value + 1) + faces[suit] +".png";
-                   }
+               for(int value = 0; value < 13; value++) {
+                   switch(value){
+                       case 0:
+                       cards[suit][value]= "Queen" + cardFront[suit] + ".png";
+                       break;
 
+                       case 10:
+                       cards[suit][value] = "King" + cardFront[suit] + ".png";
+                        break;
+
+                       case 11:
+                       cards[suit][value] = "Ace" + cardFront[suit] + ".png"; 
+                        break;
+
+                       case 12:
+                       cards[suit][value] = "Jack" + cardFront[suit] + ".png";
+                        break;
+
+                       default:            
+                        cards[suit][value] = (value + 1) + cardFront[suit] +".png";
+                        break;
+                   }
                }  
            }
 
+           for(int x = 0; x < board.length; x++) {
+               for(int y = 0; y < board[x].length; y++) {
+                   ImageIcon icon = new ImageIcon("cards/" + cards[x][y]);
+                   Image Pic = icon.getImage().getScaledInstance(85, 85,Image.SCALE_DEFAULT);
+                   JLabel overlay = new JLabel(new ImageIcon(Pic));
 
+                   board[x][y] = new JPanel();
+                   board[x][y].add(overlay);
 
-
-           for(int i = 0; i < board.length; i++) {
-               for(int j = 0; j < board[i].length; j++) {
-                   ImageIcon icon = new ImageIcon("cards/"+cards[i][j]);
-                   Image scaleImage = icon.getImage().getScaledInstance(150, 150,Image.SCALE_DEFAULT);
-                   JLabel wIcon = new JLabel(new ImageIcon(scaleImage));
-
-                   board[i][j] = new JPanel();
-                   board[i][j].add(wIcon);
-
-                   add(board[i][j]);
-
-                   board[i][j].setBorder(BorderFactory.createLineBorder(Color.gray));
-
+                   add(board[x][y]);
+                   board[x][y].setBackground(new Color(0,153,0));
 
                }
            }
+
            JButton button = new JButton("Shuffle"); //create shuffle button
            add(button, BorderLayout.SOUTH); //apply it to the top of the Frame
 
            button.addActionListener(new ActionListener() {
                public void actionPerformed(ActionEvent Argument) {
-                   Random rand = new Random();
-                   for(int i = 0; i < 4; i++) {
+                revalidate();
+                   for(int y = 0; y < 4; y++) {
                        for(int j = 0; j < 13; j++) {
 
-                        ImageIcon icon = new ImageIcon("cards/" + cards[i][j]);
-                        Image scaleImage = icon.getImage().getScaledInstance(150, 150,Image.SCALE_DEFAULT);
-                        JLabel wIcon = new JLabel(new ImageIcon(scaleImage));
+                        ImageIcon icon = new ImageIcon("cards/" + cards[y][j]);
+                        Image replPic = icon.getImage().getScaledInstance(85, 85,Image.SCALE_DEFAULT);
 
-                           int randomRow = rand.nextInt(4);
-                           int randomColumn = rand.nextInt(13);
+                           int randomRow = randomNum.nextInt(4);
+                           int randomColumn = randomNum.nextInt(13);
                            String cCard = cards[randomRow][randomColumn];
 
                           
-                           int altRandRow = rand.nextInt(4);
-                           int altRandCol = rand.nextInt(13);
-                           cards[altRandRow][altRandCol] = cCard;
+                           int altRandRow = randomNum.nextInt(4);
+                           int altRandCol = randomNum.nextInt(13);
                            
-                          
+                           JLabel replUpst = new JLabel(new ImageIcon(replPic));
                            cards[randomRow][randomColumn] = cards[altRandRow][altRandCol];
+                           cards[altRandRow][altRandCol] = cCard;
 
-                           board[i][j].removeAll();
 
-                           board[i][j].add(wIcon);
-                           board[i][j].repaint();
+
+                           board[y][j].removeAll();
+
+                           board[y][j].add(replUpst);
+                           board[y][j].repaint();
                        }
                    }
-                   revalidate();
                }
            });
 
@@ -105,11 +97,9 @@ public class CardShuffle extends JPanel{
 
    public static void main(String[] a) {
 
-       JFrame window = new JFrame();
-       window.setSize(2000,1000);
-
-       window.getContentPane().add(new CardShuffle());
-       window.setVisible(true);
+       JFrame frame = new JFrame();
+       frame.setSize(1000,500);
+       frame.add(new CardShuffle());
+       frame.setVisible(true);
    }
-
 }
