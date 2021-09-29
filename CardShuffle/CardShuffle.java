@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class CardShuffle extends JPanel{
    private JPanel[][] board = new JPanel[4][13];
-   String cardFront[] = new String[]{"Clubs","Diamonds","Hearts","Spades"};
+   String cardFront[] = new String[]{"Clubs", "Diamonds","Hearts","Spades"};
    String cards[][];
    Random randomNum = new Random();
 
@@ -58,7 +58,7 @@ public class CardShuffle extends JPanel{
            }
 
            JButton button = new JButton("Shuffle"); //create shuffle button
-           add(button, BorderLayout.SOUTH); //apply it to the top of the Frame
+           
 
            button.addActionListener(new ActionListener() {
                public void actionPerformed(ActionEvent Argument) {
