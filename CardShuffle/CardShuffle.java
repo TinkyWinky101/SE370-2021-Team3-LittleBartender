@@ -94,10 +94,10 @@ public class CardShuffle extends JPanel{
                           
                            int altRandRow = rand.nextInt(4);
                            int altRandCol = rand.nextInt(13);
-                           cards[altRandRow][altRandCol] = cCard;
                            
                           
                            cards[randomRow][randomColumn] = cards[altRandRow][altRandCol];
+                           cards[altRandRow][altRandCol] = cCard;
 
                            board[i][j].removeAll();
 
