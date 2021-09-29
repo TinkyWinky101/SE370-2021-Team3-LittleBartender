@@ -35,36 +35,39 @@ public class CardShuffle extends JFrame {
             // graphBG.setLayout(new GridLayout(5, 13));
             this.setTitle("Card Shuffler");
 
-            button.addActionListener(new ActionListener() {
+            button.addActionListener(new ActionListener() { //action listened on Shuffle button
                 @Override
                 public void actionPerformed(ActionEvent Argument) { 
-                    for(int x = 0; x < 4; x++) {
+                    for(int x = 0; x < 4; x++) { //loop board 4x13
                         for(int y = 0; y < 13; y++) {
                         Random random = new Random();
 
  
-                            int randomRow = random.nextInt(4);
-                            int randomColumn = random.nextInt(13);
-                            String cCard = cards[randomRow][randomColumn];
+                            int randomRow = random.nextInt(4); //retrieve random row location
+                            int randomColumn = random.nextInt(13); //retrieve random column location
+                            String cCard = cards[randomRow][randomColumn]; // new card coordniates
  
                            
-                            int altRandRow = random.nextInt(4);
+                            int altRandRow = random.nextInt(4); //asme as above
                             int altRandCol = random.nextInt(13);
                             
-                           
+                           //set location of new cards so that we can reshuffle the deck
                             cards[randomRow][randomColumn] = cards[altRandRow][altRandCol];
                             cards[altRandRow][altRandCol] = cCard;
 
+                            //remove all old locations
                             board[x][y].removeAll();
-                            ImageIcon icon = new ImageIcon("cards/" + cards[x][y]);
-                            Image scaleImage = icon.getImage().getScaledInstance(85, 85,Image.SCALE_DEFAULT);
-                            JLabel wIcon = new JLabel(new ImageIcon(scaleImage));
- 
-                            board[x][y].add(wIcon);
-                            board[x][y].repaint();
+                            //find card file and grab images from the deck
+                            ImageIcon pathToCard = new ImageIcon("cards/" + cards[x][y]);
+                            //resize image for jpanel viewing so it doesn't take up all the space
+                            Image replBG = pathToCard.getImage().getScaledInstance(85, 85,Image.SCALE_DEFAULT);
+
+                            JLabel newBG= new JLabel(new ImageIcon(replBG));
+                            board[x][y].add(newBG); //add new pictures in location
+                            board[x][y].repaint(); //repaint the component as you do when refreshing a Jpanel/JFrame
                         }
                     }
-                    revalidate();
+                    revalidate(); //revalidate up to highest root
                 }
             });
 
@@ -72,9 +75,9 @@ public class CardShuffle extends JFrame {
 
     public class CardPanel extends JPanel {{
     cards = new String[4][13];
-   String cardFront[] = new String[]{"Diamonds","Clubs","Spades","Hearts",};
+   String cardFront[] = new String[]{"Diamonds","Clubs","Spades","Hearts",}; //possible card suits from naming convention in the file
 
-        for(int suit = 0; suit < 4; suit++) {
+        for(int suit = 0; suit < 4; suit++) { //loop board 4x13
              for(int value = 0; value < 13; value++) {
                   switch(value){
                      case 0:
@@ -94,23 +97,27 @@ public class CardShuffle extends JFrame {
                        break;
                    
                      default:            
-                      cards[suit][value] = (value + 1) + cardFront[suit] +".png";
+                      cards[suit][value] = (value + 1) + cardFront[suit] +".png"; //all other cards other than named/royal cards
                       break;
                  }
             }  
         }
         
         
-            for(int x = 0; x < board.length; x++) {
+            for(int x = 0; x < board.length; x++) { //loop board 4x13
                 for(int y = 0; y < board[x].length; y++) {
-                    ImageIcon icon = new ImageIcon("cards/" + cards[x][y]);
-                    Image Pic = icon.getImage().getScaledInstance(85, 85,Image.SCALE_DEFAULT);
-                    JLabel overlay = new JLabel(new ImageIcon(Pic));
+
+                    //find card file and grab images from the deck
+                    ImageIcon pathToCard = new ImageIcon("cards/" + cards[x][y]); 
+                    //resize image for jpanel viewing so it doesn't take up all the space
+                    Image Pic = pathToCard.getImage().getScaledInstance(85, 85,Image.SCALE_SMOOTH);
                     board[x][y] = new JPanel();
-                    board[x][y].add(overlay);
+
+                    JLabel overlay = new JLabel(new ImageIcon(Pic));
+                    board[x][y].add(overlay); //add image labels to the board in the spot
 
                     add(board[x][y]);
-                    board[x][y].setBackground(new Color(0,153,0));
+                    board[x][y].setBackground(new Color(0,153,0)); //set panel background to "vega dealer" green
                 }
             }
         }
