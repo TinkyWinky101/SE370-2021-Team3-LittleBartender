@@ -1,47 +1,56 @@
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.Image;
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import java.awt.Dimension;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.util.Random;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-
-
-import javax.swing.JPanel;
-
 public class CardShuffle extends JPanel{
    private JPanel[][] board = new JPanel[4][13];
    String cards[][];
+  
 
    public CardShuffle() {
            setPreferredSize(new Dimension(600, 1976));
            setLayout(new GridLayout(5, 13));
-
            cards = new String[4][13];
            String faces[] = new String[]{"Clubs","Diamonds","Hearts","Spades"};
            for(int suit = 0; suit < 4; suit++) {
                for(int value = 0; value < 13;value++) {
-                   if(value == 0) {
-                       cards[suit][value] = "Ace" + faces[suit] + ".png";  
-                   }else if(value == 10) {
-                       cards[suit][value] = "Jack" + faces[suit] + ".png";  
-                   }else if(value == 11) {
-                       cards[suit][value]= "Queen" + faces[suit] + ".png";  
-                   }else if(value == 12) {
-                       cards[suit][value] = "King" + faces[suit] + ".png";  
-                   }else {
-                       cards[suit][value] = (value + 1) + faces[suit] +".png";
+                   switch(value){
+                       case 0:
+                        cards[suit][value] = "Ace" + faces[suit] + ".png"; 
+                        break;
+
+                       case 10:
+                        cards[suit][value] = "Jack" + faces[suit] + ".png";
+                        break;
+
+                       case 11:
+                        cards[suit][value]= "Queen" + faces[suit] + ".png";
+                        break;
+
+                       case 12:
+                        cards[suit][value] = "King" + faces[suit] + ".png";
+                        break;
+
+
+                       default:            
+                        cards[suit][value] = (value + 1) + faces[suit] +".png";
+                        break;
                    }
+                //    if(value == 0) {
+                //        cards[suit][value] = "Ace" + faces[suit] + ".png";  
+                //    }else if(value == 10) {
+                //        cards[suit][value] = "Jack" + faces[suit] + ".png";  
+                //    }else if(value == 11) {
+                //        cards[suit][value]= "Queen" + faces[suit] + ".png";  
+                //    }else if(value == 12) {
+                //        cards[suit][value] = "King" + faces[suit] + ".png";  
+                //    }else {
+                //        cards[suit][value] = (value + 1) + faces[suit] +".png";
+                //    }
 
                }  
            }
@@ -107,9 +116,8 @@ public class CardShuffle extends JPanel{
 
        JFrame window = new JFrame();
        window.setSize(2000,1000);
-
        window.getContentPane().add(new CardShuffle());
+    //    window.setForeground(Color.GREEN);
        window.setVisible(true);
    }
-
 }
