@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 public class CardShuffle extends JFrame {
-    Dimension dimensions = new Dimension(1000, 500);
+    Dimension dimensions = new Dimension(1100, 520);
     private CardPanel graphBG;
     private JPanel[][] board = new JPanel[4][13];
     String faces[];
@@ -31,7 +31,7 @@ public class CardShuffle extends JFrame {
             pack(); //size everything in the JFrame
             setVisible(true);
             
-            graphBG.setPreferredSize(new Dimension(300, 988));
+            graphBG.setPreferredSize(new Dimension(400, 1317));
             // graphBG.setLayout(new GridLayout(5, 13));
             this.setTitle("Card Shuffler");
 
@@ -72,7 +72,7 @@ public class CardShuffle extends JFrame {
 
     public class CardPanel extends JPanel {{
     cards = new String[4][13];
-   String cardFront[] = new String[]{"Clubs","Diamonds","Hearts","Spades"};
+   String cardFront[] = new String[]{"Diamonds","Clubs","Spades","Hearts",};
 
         for(int suit = 0; suit < 4; suit++) {
              for(int value = 0; value < 13; value++) {
