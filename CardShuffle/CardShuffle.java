@@ -12,10 +12,11 @@ public class CardShuffle extends JPanel{
   
 
    public CardShuffle() {
-           setPreferredSize(new Dimension(600, 1976));
-           setLayout(new GridLayout(5, 13));
-           cards = new String[4][13];
-           String faces[] = new String[]{"Clubs","Diamonds","Hearts","Spades"};
+        setBackground( new Color(0,153,0));   
+        setPreferredSize(new Dimension(600, 1976));
+        setLayout(new GridLayout(5, 13));
+        cards = new String[4][13];
+        String faces[] = new String[]{"Clubs","Diamonds","Hearts","Spades"};
            for(int suit = 0; suit < 4; suit++) {
                for(int value = 0; value < 13;value++) {
                    switch(value){
@@ -68,6 +69,7 @@ public class CardShuffle extends JPanel{
                    board[i][j].add(wIcon);
 
                    add(board[i][j]);
+                   board[i][j].setBackground( new Color(0,153,0));
 
                    board[i][j].setBorder(BorderFactory.createLineBorder(Color.gray));
 
