@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.time.Year;
 import java.util.*;
 
 public class birthdayChecker extends JPanel {
@@ -8,7 +9,8 @@ public class birthdayChecker extends JPanel {
     private int day;
     private int year;
     private boolean isLegalAdult = false;
-    public final static int CURRENT_YEAR = 2021;
+    public static Calendar currentDate = Calendar.getInstance();
+    public static int CURRENT_YEAR = currentDate.get(Calendar.YEAR);
     public final int LEGAL_YEAR = 2000;
 
     private boolean checkIfLegal(){
@@ -30,21 +32,41 @@ public class birthdayChecker extends JPanel {
 
         frame.add(panel);
 
-        JLabel lbl = new JLabel("What is your birth year?");
-        lbl.setVisible(true);
+        JLabel askForYear = new JLabel("What is your birth day?");
+        askForYear.setVisible(true);
 
-        panel.add(lbl);
+        panel.add(askForYear);
 
-        String[] choices = new String[50];
-        for(int i = 0; i < 50; i++){
+        String[] year = new String[80];
+        for(int i = 0; i < 80; i++){
             int calculatedYear = CURRENT_YEAR - i;
-            choices[i] = String.valueOf(calculatedYear);
+            year[i] = String.valueOf(calculatedYear);
         }
 
-        final JComboBox<String> cb = new JComboBox<String>(choices);
+        String[] month = new String[12];
+        for(int i = 0; i < 12; i++){
+            month[i] = String.valueOf(i + 1);
+        }
 
-        cb.setVisible(true);
-        panel.add(cb);
+        String[] day = new String[31];
+        for(int i = 0; i < 31; i++){
+            day[i] = String.valueOf(i + 1);
+        }
+
+        final JComboBox<String> cm = new JComboBox<String>(month);
+
+        cm.setVisible(true);
+        panel.add(cm);
+
+        final JComboBox<String> cd = new JComboBox<String>(day);
+
+        cd.setVisible(true);
+        panel.add(cd);
+
+        final JComboBox<String> cy = new JComboBox<String>(year);
+
+        cd.setVisible(true);
+        panel.add(cy);
 
         JButton btn = new JButton("OK");
         panel.add(btn);
