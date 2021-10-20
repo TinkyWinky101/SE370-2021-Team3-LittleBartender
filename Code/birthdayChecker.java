@@ -11,7 +11,7 @@ public class birthdayChecker extends JPanel {
     private boolean isLegalAdult = false;
     public static Calendar currentDate = Calendar.getInstance();
     public static int CURRENT_YEAR = currentDate.get(Calendar.YEAR);
-    public final int LEGAL_YEAR = 2000;
+    public final int LEGAL_YEAR = CURRENT_YEAR - 21;
 
     private boolean checkIfLegal(){
         if(year <= LEGAL_YEAR){
@@ -20,16 +20,22 @@ public class birthdayChecker extends JPanel {
         return false;
     }
 
-    public static void main(String[] args){
-        JFrame frame = new JFrame("A Simple GUI");
+    public static void fillDateArrayGeneric(String[] array, int n){
+        for(int i = 0; i < n; i++){
+            array[i] = String.valueOf(i+1);
+        }
+    }
+
+
+
+    public static void initializeBox(){
+        JFrame frame = new JFrame("Can You Drink");
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // frame.setLayout(null);
         frame.setSize(500, 500);
-        frame.setLocation(430, 100);
 
         JPanel panel = new JPanel();
-
+        // panel.setLayout(new GridLayout(5,1));
         frame.add(panel);
 
         JLabel askForYear = new JLabel("What is your birth day?");
@@ -44,15 +50,12 @@ public class birthdayChecker extends JPanel {
         }
 
         String[] month = new String[12];
-        for(int i = 0; i < 12; i++){
-            month[i] = String.valueOf(i + 1);
-        }
+        fillDateArrayGeneric(month, 12);
 
         String[] day = new String[31];
-        for(int i = 0; i < 31; i++){
-            day[i] = String.valueOf(i + 1);
-        }
+        fillDateArrayGeneric(day, 31);
 
+        //refactor the following
         final JComboBox<String> cm = new JComboBox<String>(month);
 
         cm.setVisible(true);
@@ -69,7 +72,14 @@ public class birthdayChecker extends JPanel {
         panel.add(cy);
 
         JButton btn = new JButton("OK");
+        // btn.actionListener(this);
         panel.add(btn);
+    }
+    
+    // public void actionPerformed(ActionEvent e)
 
+    public static void main(String[] args){
+
+        initializeBox();
     }
 }
