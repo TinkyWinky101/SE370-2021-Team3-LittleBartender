@@ -32,7 +32,6 @@ public class CardShuffle extends JFrame {
             setVisible(true);
             
             graphBG.setPreferredSize(new Dimension(400, 1317));
-            // graphBG.setLayout(new GridLayout(5, 13));
             this.setTitle("Card Shuffler");
 
             button.addActionListener(new ActionListener() { //action listened on Shuffle button

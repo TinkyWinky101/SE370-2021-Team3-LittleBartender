@@ -1,0 +1,6 @@
+Meet up through Zoom. Worked on current lab activity
+
+Goals:
+  Finish lab work.
+  Learn how to do dropdown lists
+  Find a way to check birthdate
