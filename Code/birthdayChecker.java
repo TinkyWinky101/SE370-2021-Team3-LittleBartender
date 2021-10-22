@@ -15,7 +15,14 @@ public class birthdayChecker extends JPanel {
 
     private boolean checkIfLegal(){
         if(year <= LEGAL_YEAR){
-            return true;
+            if (month > currentDate.get(Calendar.MONTH)){
+                return true;
+            }
+            else if(month == currentDate.get(Calendar.MONTH)){
+                if(day >= currentDate.get(Calendar.DATE)){
+                    return true;
+                }
+            }
         }
         return false;
     }
