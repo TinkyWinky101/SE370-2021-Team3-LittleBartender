@@ -1,0 +1,4 @@
+Agenda:
+  1. Complete the assigned labs
+  2. Implement some GUIs and what not.
+ 
