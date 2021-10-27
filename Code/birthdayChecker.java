@@ -27,15 +27,33 @@ public class birthdayChecker extends JPanel {
         return false;
     }
 
+    public int convertFromStringToInt(String input){
+        return Integer.parseInt(input);
+    }
+
     public static void fillDateArrayGeneric(String[] array, int n){
         for(int i = 0; i < n; i++){
             array[i] = String.valueOf(i+1);
         }
     }
 
+    public int getMonth(){
+        return month;
+    }
 
+    public int getDay(){
+        return day;
+    }
 
-    public static void initializeBox(){
+    public int getYear(){
+        return year;
+    }
+
+    public boolean getIfLegal(){
+        return isLegalAdult;
+    }
+
+    public birthdayChecker(){
         JFrame frame = new JFrame("Can You Drink");
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,30 +68,30 @@ public class birthdayChecker extends JPanel {
 
         panel.add(askForYear);
 
-        String[] year = new String[80];
+        String[] yearSelection = new String[80];
         for(int i = 0; i < 80; i++){
             int calculatedYear = CURRENT_YEAR - i;
-            year[i] = String.valueOf(calculatedYear);
+            yearSelection[i] = String.valueOf(calculatedYear);
         }
 
-        String[] month = new String[12];
-        fillDateArrayGeneric(month, 12);
+        String[] monthSelection = new String[12];
+        fillDateArrayGeneric(monthSelection, 12);
 
-        String[] day = new String[31];
-        fillDateArrayGeneric(day, 31);
+        String[] daySelection = new String[31];
+        fillDateArrayGeneric(daySelection, 31);
 
         //refactor the following
-        final JComboBox<String> cm = new JComboBox<String>(month);
+        final JComboBox<String> cm = new JComboBox<String>(monthSelection);
 
         cm.setVisible(true);
         panel.add(cm);
 
-        final JComboBox<String> cd = new JComboBox<String>(day);
+        final JComboBox<String> cd = new JComboBox<String>(daySelection);
 
         cd.setVisible(true);
         panel.add(cd);
 
-        final JComboBox<String> cy = new JComboBox<String>(year);
+        final JComboBox<String> cy = new JComboBox<String>(yearSelection);
 
         cd.setVisible(true);
         panel.add(cy);
@@ -81,12 +99,20 @@ public class birthdayChecker extends JPanel {
         JButton btn = new JButton("OK");
         // btn.actionListener(this);
         panel.add(btn);
-    }
-    
-    // public void actionPerformed(ActionEvent e)
 
-    public static void main(String[] args){
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                String inputMonth = cm.getSelectedItem().toString();
+                String inputDay = cd.getSelectedItem().toString();
+                String inputYear = cy.getSelectedItem().toString();
+                month = convertFromStringToInt(inputMonth);
+                day = convertFromStringToInt(inputDay);
+                year = convertFromStringToInt(inputYear);
+                revalidate();
+            }
+        });
 
-        initializeBox();
+        checkIfLegal();
     }
 }
