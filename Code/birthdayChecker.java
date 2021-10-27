@@ -14,7 +14,10 @@ public class birthdayChecker extends JPanel {
     public final int LEGAL_YEAR = CURRENT_YEAR - 21;
 
     private boolean checkIfLegal(){
-        if(year <= LEGAL_YEAR){
+        if(year < LEGAL_YEAR){
+            return true;
+        }
+        if(year == LEGAL_YEAR){
             if (month > currentDate.get(Calendar.MONTH)){
                 return true;
             }
@@ -103,16 +106,22 @@ public class birthdayChecker extends JPanel {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                String inputMonth = cm.getSelectedItem().toString();
-                String inputDay = cd.getSelectedItem().toString();
-                String inputYear = cy.getSelectedItem().toString();
-                month = convertFromStringToInt(inputMonth);
-                day = convertFromStringToInt(inputDay);
-                year = convertFromStringToInt(inputYear);
+                // String inputMonth = cm.getSelectedItem().toString();
+                // String inputDay = cd.getSelectedItem().toString();
+                // String inputYear = cy.getSelectedItem().toString();
+                // month = convertFromStringToInt(inputMonth);
+                // day = convertFromStringToInt(inputDay);
+                // year = convertFromStringToInt(inputYear);
+                month = cm.getSelectedIndex() + 1;
+                day = cd.getSelectedIndex() + 1;
+                year = CURRENT_YEAR - cy.getSelectedIndex();
                 revalidate();
+                isLegalAdult = checkIfLegal();
+
+                System.out.println(isLegalAdult);
             }
         });
 
-        checkIfLegal();
+        
     }
 }
