@@ -1,0 +1,7 @@
+The birthday checker worked splendidly, although I need to figure out a way to activate the main menu after the birthday has been confirmed. Nevertheless, the foundations have 
+been partially set and with time, the project should be 25% completed. 
+
+Tasks:
+  1. Complete lab 9.
+  2. Create a main menu
+  3. Figure out a way to make the transition seem seamless.
