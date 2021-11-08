@@ -9,6 +9,7 @@ public class birthdayChecker extends JPanel {
     private int day;
     private int year;
     private boolean isLegalAdult = false;
+    private boolean didAnswer = false;
     public static Calendar currentDate = Calendar.getInstance();
     public static int CURRENT_YEAR = currentDate.get(Calendar.YEAR);
     public final int LEGAL_YEAR = CURRENT_YEAR - 21;
@@ -54,6 +55,10 @@ public class birthdayChecker extends JPanel {
 
     public boolean getIfLegal(){
         return isLegalAdult;
+    }
+
+    public boolean checkIfAnswered(){
+        return didAnswer;
     }
 
     public birthdayChecker(){
@@ -117,8 +122,10 @@ public class birthdayChecker extends JPanel {
                 year = CURRENT_YEAR - cy.getSelectedIndex();
                 revalidate();
                 isLegalAdult = checkIfLegal();
-
-                System.out.println(isLegalAdult);
+                didAnswer = true;
+                // System.out.println(isLegalAdult);
+                frame.dispose(); //close whether or not isLegalAdult()
+                
             }
         });
 

@@ -1,7 +1,4 @@
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.time.Year;
 import java.util.*;
 
 public class Recipes {
@@ -25,5 +22,26 @@ public class Recipes {
         servingSize = s;
         percentAlcohol = p;
         difficultyLevel = diff;
+    }
+
+    // return functions just in case I need something
+    public String getDrinkName(){
+        return drinkName;
+    }
+
+    public String getMainLiquor(){
+        return mainLiquor;
+    }
+
+    public int getServingSIze(){
+        return servingSize;
+    }
+
+    public double getPA(){
+        return percentAlcohol;
+    }
+
+    public float getDifficultyLevel(){
+        return difficultyLevel;
     }
 }
