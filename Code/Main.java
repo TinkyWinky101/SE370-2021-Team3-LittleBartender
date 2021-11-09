@@ -1,23 +1,20 @@
 import java.util.*;
 
 public class Main {
-    public static void main(String args[]){
+    public static void main(String args[]) throws InterruptedException{
         int selection;
         boolean answered = false;
         mainMenuScreen menu = new mainMenuScreen();
 
         birthdayChecker checker = new birthdayChecker();
         while(answered == false){
-            answered = checker.checkIfAnswered();
+            //sleep thread add
+            Thread.sleep(4000);
+            answered = checker.didAnswer;
         }
 
-        if(checker.getIfLegal() == true){
-            menu.showFrame();
-        }
-
-        else
-        {
-            System.out.println("Sorry kid, wait till you get older, okay?");
+        if(checker.getIfLegal()){
+           menu.showFrame();
         }
     }
 }

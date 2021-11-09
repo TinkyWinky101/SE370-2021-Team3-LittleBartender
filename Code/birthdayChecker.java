@@ -9,7 +9,7 @@ public class birthdayChecker extends JPanel {
     private int day;
     private int year;
     private boolean isLegalAdult = false;
-    private boolean didAnswer = false;
+    public boolean didAnswer = false;
     public static Calendar currentDate = Calendar.getInstance();
     public static int CURRENT_YEAR = currentDate.get(Calendar.YEAR);
     public final int LEGAL_YEAR = CURRENT_YEAR - 21;
@@ -101,7 +101,7 @@ public class birthdayChecker extends JPanel {
 
         final JComboBox<String> cy = new JComboBox<String>(yearSelection);
 
-        cd.setVisible(true);
+        cy.setVisible(true);
         panel.add(cy);
 
         JButton btn = new JButton("OK");

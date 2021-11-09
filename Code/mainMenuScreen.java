@@ -16,8 +16,11 @@ public class mainMenuScreen implements frames {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 1000); //maintain 1000, 1000 throughout program
 
+        //Initialize JPanel
         JPanel mms = new JPanel();
-        mms.setLayout(new GridLayout(NUMBER_OF_ROWS, NUMBER_OF_COLUMNS));
+        mms.setLayout(new GridLayout(NUMBER_OF_COLUMNS, NUMBER_OF_ROWS));
+        frame.add(mms);
+
         JButton ingredients = new JButton("List of Ingredients");
         JButton recipes = new JButton("List of Recipes");
         JButton cyom = new JButton("Create Your Own Mix");
