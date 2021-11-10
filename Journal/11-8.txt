@@ -1,0 +1,7 @@
+Figured out how to transition from BirthdayChecker to the MainMenu. However, the current color scheme of the main menue is to bland.
+
+Tasks:
+  1. Complete lab 10
+  2. Get a search function for both ingredients and Recipes up and running.
+  3. Make changes to current code if needed.
+  4. Figure out smooth transition.
