@@ -1,0 +1,6 @@
+Bit behind on code, but the requirements labs are almost done.
+Goals: 
+  1. Fix Lab 11.
+  2. Do Lab 12.
+  3. Find a way to insert recipe in the style of one file.
+  
