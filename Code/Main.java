@@ -16,5 +16,10 @@ public class Main {
         if(checker.getIfLegal()){
            menu.showFrame();
         }
+        // answered = false;
+        // while(answered == false){
+        //     Thread.sleep(4000)
+        // }
+
     }
 }

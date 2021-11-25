@@ -3,18 +3,21 @@ import java.awt.event.*;
 import java.awt.*;
 import java.util.*;
 
-public class mainMenuScreen implements frames {
+public class mainMenuScreen{
     private int optionSelect;
     private final static int NUMBER_OF_ROWS = 3;
     private final static int NUMBER_OF_COLUMNS = 1;
     private JFrame frame;
 
+
     public mainMenuScreen(){
-        //Initialize all components.
+        // Initialize all components.
         frame = new JFrame("Main Menu");
         frame.setVisible(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 1000); //maintain 1000, 1000 throughout program
+
+
 
         //Initialize JPanel
         JPanel mms = new JPanel();
