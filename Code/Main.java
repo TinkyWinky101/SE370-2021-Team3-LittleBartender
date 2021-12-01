@@ -16,10 +16,23 @@ public class Main {
         if(checker.getIfLegal()){
            menu.showFrame();
         }
-        // answered = false;
-        // while(answered == false){
-        //     Thread.sleep(4000)
-        // }
+        
+        //Find a way so that the menu survives and goes back to the 
+        answered = false;
+        while(answered == false){
+            Thread.sleep(4000)
+            answered = menu.userSelected;
+        }
+
+        switch(menu.getOption()){
+            case 1:
+                //create new recipe;
+                createRecipes recipeCreator = new createRecipe();
+                
+
+        }
+
+
 
     }
 }

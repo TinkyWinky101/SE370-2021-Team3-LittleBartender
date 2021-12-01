@@ -66,7 +66,7 @@ public class createRecipes {
                 float trueDifficulty = Float.parseFloat(difficultyAsString);
 
                 Recipes UCRecipes = new Recipes(nameOfDrink, liquorUsed, trueServingSize, APV, trueDifficulty);
-
+                UCRecipes.importToFile();
                 //destroy frame after done
                 frame.dispose();
             }

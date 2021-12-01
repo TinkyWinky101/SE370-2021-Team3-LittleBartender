@@ -8,6 +8,7 @@ public class mainMenuScreen{
     private final static int NUMBER_OF_ROWS = 3;
     private final static int NUMBER_OF_COLUMNS = 1;
     private JFrame frame;
+    public boolean userSelected = false;
 
 
     public mainMenuScreen(){
@@ -38,21 +39,35 @@ public class mainMenuScreen{
             @Override
             public void actionPerformed(ActionEvent e){
                 optionSelect = 1;
+                userSelected = true;
+                frame.setVisible(false);
         }});
 
         ingredients.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 optionSelect = 2;
+                userSelected = true;
+                frame.setVisible(false);
+
         }});
 
         ingredients.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 optionSelect = 3;
+                userSelected = true;
+                frame.setVisible(false);
         }});
     }
+
+    public int getOption(){
+        return optionSelect;
+    }
+
+    
     public void showFrame(){
         frame.setVisible(true);
     }
 }
+
