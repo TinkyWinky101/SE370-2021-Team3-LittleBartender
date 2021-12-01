@@ -1,2 +1,7 @@
 The professor has shown mercy. No actual lab today. However, we're taking the time to finish to code, where the foundation has been
 laid. Therefore, we have split the coding responsibility.
+
+Goals:
+  1. Get importRecipe down.
+  2. Create Search Funtionality
+  3. Cosmetic items should be an after thought this week
