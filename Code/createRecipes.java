@@ -56,9 +56,19 @@ public class createRecipes {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPreformed(ActionEvent e){
-                String nameofDrink = nameField.getText();
+                String nameOfDrink = nameField.getText();
                 String liquorUsed = liquorField.getText();
-                
+                String servingSizeAsString = sizeField.getText();
+                int trueServingSize = Integer.parseInt(servingSizeAsString);
+                String aPVString = percent.getText();
+                double APV = Double.parseDouble(aPVString);
+                String difficultyAsString = difficultyField.getText();
+                float trueDifficulty = Float.parseFloat(difficultyAsString);
+
+                Recipes UCRecipes = new Recipes(nameOfDrink, liquorUsed, trueServingSize, APV, trueDifficulty);
+
+                //destroy frame after done
+                frame.dispose();
             }
 
         });
