@@ -1,59 +1,62 @@
-import java.util.*;
-import java.io.*;
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.util.*;
 
-public class createRecipes {
+
+public class createRecipes extends recipeFileManager{
     public ArrayList<Recipes> recipe;
     private final static int NUMBER_OF_COLUMNS = 2;
     private final static int NUMBER_OF_ROWS = 6;
+    JFrame frame;
 
     
     public createRecipes(){
-        JFrame frame = new JFrame("Create Your Recipes");
+        frame = new JFrame("Create Your Recipes");
         frame.setVisible(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 1000);
         frame.setLayout(new GridLayout(NUMBER_OF_COLUMNS, NUMBER_OF_ROWS));
         
-        JPanel creater = new JPanel();
-        frame.add(creater);
+        JPanel creator = new JPanel();
+        frame.add(creator);
 
-        JButton searchButton = new JButton("Create");
 
         JLabel name = new JLabel("Name of Drink: ");
-        frame.add(name);
+        creator.add(name);
         
         JTextField nameField = new JTextField();
-        frame.add(nameField);
+        creator.add(nameField);
         
         JLabel liquor = new JLabel("Main Liquor: ");
-        frame.add(liquor);
+        creator.add(liquor);
         
         JTextField liquorField = new JTextField();
-        frame.add(liquorField);
+        creator.add(liquorField);
 
         JLabel size = new JLabel("Serving Size: ");
-        frame.add(size);
+        creator.add(size);
         
         JTextField sizeField = new JTextField();
-        frame.add(sizeField);
+        creator.add(sizeField);
 
         JLabel percent = new JLabel("APV value: ");
-        frame.add(percent);
+        creator.add(percent);
         
         JTextField percentField = new JTextField();
-        frame.add(percentField);
+        creator.add(percentField);
 
         JLabel difficulty = new JLabel("Difficulty from 1 to 10: ");
-        frame.add(difficulty);
+        creator.add(difficulty);
         
         JTextField difficultyField = new JTextField();
-        frame.add(difficultyField);
+        creator.add(difficultyField);
 
-        frame.add(searchButton);
+        JButton create = new JButton("Create the Mix");
+        creator.add(create);
 
-        searchButton.addActionListener(new ActionListener() {
+        create.addActionListener(new ActionListener(){
             @Override
             public void actionPreformed(ActionEvent e){
                 String nameOfDrink = nameField.getText();
@@ -65,12 +68,19 @@ public class createRecipes {
                 String difficultyAsString = difficultyField.getText();
                 float trueDifficulty = Float.parseFloat(difficultyAsString);
 
-                Recipes UCRecipes = new Recipes(nameOfDrink, liquorUsed, trueServingSize, APV, trueDifficulty);
-                UCRecipes.importToFile();
+                addtoDatabase(nameOfDrink, liquorUsed, trueServingSize, APV, trueDifficulty);
+                // Recipes UCRecipes = new Recipes(nameOfDrink, liquorUsed, trueServingSize, APV, trueDifficulty);
+                // UCRecipes.importToFile();
+
                 //destroy frame after done
                 frame.dispose();
             }
 
         });
+
+    }
+
+    public void showFrame() {
+        frame.setVisible(true);
     }
 }

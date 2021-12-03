@@ -30,4 +30,6 @@ public abstract class search{
 
         panel.add(listScroller);
     }
+
+    
 }

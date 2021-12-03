@@ -9,7 +9,8 @@ public class Recipes {
     private double percentAlcohol;
     private float difficultyLevel;
     private boolean favorite = false;
-    private int databaseNumber;
+    private String howToMake;
+    // private int databaseNumber;
 
     public Recipes(){
         drinkName = "unnamed";
@@ -18,7 +19,8 @@ public class Recipes {
         percentAlcohol = 0.0;
         difficultyLevel = 0;
         favorite = false;
-        databaseNumber = -1;
+        howToMake = "";
+        // databaseNumber = -1;
     }
 
     public Recipes(String d, String m, int s, double p, float diff){
@@ -27,19 +29,18 @@ public class Recipes {
         servingSize = s;
         percentAlcohol = p;
         difficultyLevel = diff;
+        howToMake = "";
         favorite = false;
     }
 
-    public Recipes(int fileNumber) throws Exception{
-        File file = new File("Recipes.dat");
+    public Recipes(String FileName) throws Exception{
+        File file = new File("/Recipes/" + FileName + ".txt");
         Scanner sc = new Scanner(file);
 
-        for(int i = 0; i < fileNumber; i++){
-            sc.nextLine();
-        }
+        
         while(sc.hasNextLine()){
-            drinkName = sc.next();
-            mainLiquor = sc.next();
+            drinkName = sc.nextLine();
+            mainLiquor = sc.nextLine();
             servingSize = sc.nextInt();
             percentAlcohol = sc.nextDouble();
             difficultyLevel = sc.nextFloat();
@@ -69,17 +70,33 @@ public class Recipes {
         return difficultyLevel;
     }
 
+    public boolean returnFavorite(){
+        return favorite;
+    }
+
+    public void userFavorites(){
+        favorite = true;
+    }
+
+    public void userUnfavorites(){
+        favorite = false;
+    }
+
+    public String returnHowTo(){
+        return howToMake;
+    }
+
+    
     public void importToFile(){
         try {
             //Open file and write variables into files.
-            FileWriter file = new FileWriter("Recipes.dat");
-            Scanner = scam
-            file.write(drinkName + " ");
-            file.write(mainLiquor + " ");
-            file.write(servingSize + " ");
-            file.write(percentAlcohol + " ");
-            file.write(difficultyLevel + " ");
-            file.write(favorite + " ");
+            FileWriter file = new FileWriter("/Recipes/" + drinkName + ".txt");
+            file.write(drinkName + "\n");
+            file.write(mainLiquor + "\n");
+            file.write(servingSize + "\n");
+            file.write(percentAlcohol + "\n");
+            file.write(difficultyLevel + "\n");
+            file.write(favorite + "\n");
             file.close();
         }
 
