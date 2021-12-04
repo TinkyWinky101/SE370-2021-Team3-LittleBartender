@@ -65,7 +65,7 @@ public class birthdayChecker extends JPanel {
         JFrame frame = new JFrame("Can You Drink");
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 500);
+        frame.setSize(1000, 500);
 
         JPanel panel = new JPanel();
         // panel.setLayout(new GridLayout(5,1));

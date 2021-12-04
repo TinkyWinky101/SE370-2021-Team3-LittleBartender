@@ -1,0 +1,4 @@
+Nothing of the sort happened
+Goals: 
+  1. Start on design template.
+  2. Start on search functions.
