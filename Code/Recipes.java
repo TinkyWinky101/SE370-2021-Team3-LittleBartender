@@ -33,20 +33,35 @@ public class Recipes {
         favorite = false;
     }
 
-    public Recipes(String FileName) throws Exception{
-        File file = new File("/Recipes/" + FileName + ".txt");
-        Scanner sc = new Scanner(file);
+    public Recipes(String d, String m, int s, double p, float diff, String rec){
+        drinkName = d;
+        mainLiquor = m;
+        servingSize = s;
+        percentAlcohol = p;
+        difficultyLevel = diff;
+        howToMake = "";
+        favorite = false;
+    }
 
-        
-        while(sc.hasNextLine()){
+    public Recipes(String FileName){
+        try {
+            File file = new File(FileName + ".txt");
+            Scanner sc = new Scanner(file);
+
             drinkName = sc.nextLine();
             mainLiquor = sc.nextLine();
             servingSize = sc.nextInt();
             percentAlcohol = sc.nextDouble();
             difficultyLevel = sc.nextFloat();
+            howToMake = sc.nextLine();
             favorite = sc.nextBoolean();
+            howToMake = sc.nextLine();
+            sc.close();
         }
-        sc.close();
+
+        catch(Exception e){
+            System.out.println("Something went wrong");
+        }
     }
 
     // return functions just in case I need something
@@ -58,11 +73,11 @@ public class Recipes {
         return mainLiquor;
     }
 
-    public int getServingSIze(){
+    public int getServingSize(){
         return servingSize;
     }
 
-    public double getPA(){
+    public double getAPA(){
         return percentAlcohol;
     }
 
@@ -82,7 +97,7 @@ public class Recipes {
         favorite = false;
     }
 
-    public String returnHowTo(){
+    public String getHowTo(){
         return howToMake;
     }
 
@@ -90,7 +105,8 @@ public class Recipes {
     public void importToFile(){
         try {
             //Open file and write variables into files.
-            FileWriter file = new FileWriter("/Recipes/" + drinkName + ".txt");
+            File dummyFile = new File(drinkName + ".txt");
+            FileWriter file = new FileWriter(dummyFile);
             file.write(drinkName + "\n");
             file.write(mainLiquor + "\n");
             file.write(servingSize + "\n");
@@ -104,5 +120,36 @@ public class Recipes {
             System.out.println("File not imported successfully");
             e.printStackTrace();
         }
+    }
+
+    public void importToFileWithHowTo(String r)
+    {
+        try {
+            //Open file and write variables into files.
+            File dummyFile = new File(drinkName + ".txt");
+            FileWriter file = new FileWriter(dummyFile);
+            file.write(drinkName + "\n");
+            file.write(mainLiquor + "\n");
+            file.write(servingSize + "\n");
+            file.write(percentAlcohol + "\n");
+            file.write(difficultyLevel + "\n");
+            file.write(favorite + "\n");
+            file.write(r + "\n");
+            file.close();
+        }
+
+        catch(IOException e){
+            System.out.println("File not imported successfully");
+            e.printStackTrace();
+        }
+    }
+
+    public void printContents(){
+        System.out.println(drinkName);
+        System.out.println(mainLiquor);
+        System.out.println(servingSize);
+        System.out.println(percentAlcohol);
+        System.out.println(difficultyLevel);
+        System.out.println(favorite);
     }
 }
