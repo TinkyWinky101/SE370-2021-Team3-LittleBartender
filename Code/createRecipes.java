@@ -77,7 +77,7 @@ public class createRecipes extends recipeFileManager{
 
                 String userHowTo = recipeField.getText();
 
-                addToDatabase(nameOfDrink, liquorUsed, trueServingSize, APVAsDouble, trueDifficulty);
+                addToDatabase(nameOfDrink, liquorUsed, trueServingSize, APVAsDouble, trueDifficulty, userHowTo);
                 // Recipes UCRecipes = new Recipes(nameOfDrink, liquorUsed, trueServingSize, APV, trueDifficulty);
                 // UCRecipes.importToFile();
 
