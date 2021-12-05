@@ -11,12 +11,14 @@ public class displayRecipe {
     private JButton exitButton;
 
     public displayRecipe(Recipe r){
+        //Set up the frame and shit
         createFrame();
 
         displayRecipe = new JPanel();
         displayRecipe.setLayout(new BoxLayout(displayRecipe, BoxLayout.Y_AXIS));
         frame.add(displayRecipe);
         
+        // Add them
         addLabel(nameLabel, "Name");
         addField(nameField, r.getObjectName());
 
@@ -34,7 +36,7 @@ public class displayRecipe {
         exitButton.addActionListener(new ExitListener());
 
     }
-
+    //For the exit button
     private class ExitListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             frame.dispose();
@@ -42,7 +44,7 @@ public class displayRecipe {
 
         }
     }
-
+    //These ones serve to make my job easier
     private void createFrame(){
         frame = new JFrame("View Recipe");
         frame.setBounds(200, 200, 1000, 800);

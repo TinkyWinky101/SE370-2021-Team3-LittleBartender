@@ -133,14 +133,16 @@ public class mainMenuScreen {
 	
 	private JScrollPane newScrollPane(){
 		list = new JList<String>();
+		//Add a mouse listener so that 2 clicks here will pull a rec
 		list.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt){
 				JList<String> list = (JList<String>)evt.getSource();
 				if(evt.getClickCount() == 2){
+					//Require some changes in Recipes for it to work, but that's ok
 					ArrayList<Recipe>items = recipes.getItems();
 					int index = list.locationToIndex(evt.getPoint());
 					Recipe selectedRec = items.get(index);
-					
+					//Moment of truth
 					displayRecipe displayer = new displayRecipe(selectedRec);
 					displayer.showFrame();
 				}
