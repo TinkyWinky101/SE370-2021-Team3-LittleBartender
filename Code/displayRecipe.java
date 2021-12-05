@@ -69,7 +69,7 @@ public class displayRecipe {
     private String compileIngredients(Recipe r){
         String ingredientslist = "";
         for(int i = 0; i < r.getItems().size(); i++){
-            ingredientslist += (r.getItems().get(i) + " ");
+            ingredientslist += (r.getItems().get(i) + ", ");
         }
 
         return ingredientslist;

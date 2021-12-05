@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Recipes {
-
+	//Since Recipe shares stuff with listObject, this works completely fine.
 	private ArrayList<Recipe> recipes;
 	
 	public Recipes(){
