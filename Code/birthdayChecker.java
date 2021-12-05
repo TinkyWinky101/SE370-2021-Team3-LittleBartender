@@ -65,10 +65,11 @@ public class birthdayChecker extends JPanel {
         JFrame frame = new JFrame("Can You Drink");
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 500);
+        frame.setBounds(200,200,550,400);
 
         JPanel panel = new JPanel();
         // panel.setLayout(new GridLayout(5,1));
+        panel.setLayout(new FlowLayout());
         frame.add(panel);
 
         JLabel askForYear = new JLabel("What is your birth day?");
