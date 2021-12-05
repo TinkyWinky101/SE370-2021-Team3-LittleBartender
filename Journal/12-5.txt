@@ -1,0 +1,7 @@
+Final push for the project. We plan to go to show it to the professor on Monday and grind on Tuesday before our presentation on
+Wednesday.
+
+Goals:
+  1. Create a way to display Recipe (accomplished)
+  2. Make sure it looks good.
+  3. Make a search function?
