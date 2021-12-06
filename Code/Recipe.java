@@ -1,6 +1,5 @@
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Recipe extends listObject {
     private String directions;
@@ -49,5 +48,3 @@ public class Recipe extends listObject {
 		return ingredients;
 	}
 }
-
-

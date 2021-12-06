@@ -1,19 +1,19 @@
 import java.util.ArrayList;
 
 public class Recipes {
-
-	private ArrayList<listObject> recipes;
+	//Since Recipe shares stuff with listObject, this works completely fine.
+	private ArrayList<Recipe> recipes;
 	
 	public Recipes(){
-		recipes = new ArrayList<listObject>();
+		recipes = new ArrayList<Recipe>();
 	}
 	
-	public void addItem(listObject i) {
+	public void addItem(Recipe i) {
 		recipes.add(i);
 	}
 
-	public void editItem(listObject i) {
-	     for(listObject item: recipes){
+	public void editItem(Recipe i) {
+	     for(Recipe item: recipes){
 			if (item.getObjectName().equals(i.getObjectName())){
 				recipes.remove(item);
 				recipes.add(i);
@@ -22,9 +22,9 @@ public class Recipes {
 		
 	}
 
-	public listObject getItem(String name) {
-		listObject item = null;
-		for(listObject i: recipes){
+	public Recipe getItem(String name) {
+		Recipe item = null;
+		for(Recipe i: recipes){
 			if(i.getObjectName().equals(name)){
 				item=i;
 			}
@@ -32,7 +32,7 @@ public class Recipes {
 		return item;
 	}
 
-	public ArrayList<listObject> getItems() {
+	public ArrayList<Recipe> getItems() {
 		
 		return recipes;
 	}

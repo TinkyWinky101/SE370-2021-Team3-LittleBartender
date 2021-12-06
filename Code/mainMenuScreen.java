@@ -1,36 +1,13 @@
+import java.awt.*;
+import java.awt.event.*;
 
-
-
-
-import java.awt.ScrollPane;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.GridLayout;
-
-import java.util.List;
-import java.util.Scanner;
-import java.util.ArrayList;
+import java.util.*;
 import java.nio.file.Paths;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.awt.Dimension;
+import java.io.*;
 
 
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JList;
-import javax.swing.JLabel;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.*;
+import javax.swing.event.*;
 
 public class mainMenuScreen {
 
@@ -156,6 +133,21 @@ public class mainMenuScreen {
 	
 	private JScrollPane newScrollPane(){
 		list = new JList<String>();
+		//Add a mouse listener so that 2 clicks here will pull a rec
+		list.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt){
+				JList<String> list = (JList<String>)evt.getSource();
+				if(evt.getClickCount() == 2){
+					//Require some changes in Recipes for it to work, but that's ok
+					ArrayList<Recipe>items = recipes.getItems();
+					int index = list.locationToIndex(evt.getPoint());
+					Recipe selectedRec = items.get(index);
+					//Moment of truth
+					displayRecipe displayer = new displayRecipe(selectedRec);
+					displayer.showFrame();
+				}
+			}
+		});
 		scrollPane = new JScrollPane(list);
 		return scrollPane;
 	}
@@ -226,9 +218,9 @@ public class mainMenuScreen {
 
 	private class ListButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			ArrayList<listObject>items=recipes.getItems();
+			ArrayList<Recipe>items=recipes.getItems();
 			DefaultListModel<String> model = new DefaultListModel<String>();
-			for(listObject i : items){
+			for(Recipe i : items){
 				model.addElement(i.getObjectName());
 			}
 			list.setModel(model);
@@ -276,14 +268,3 @@ public class mainMenuScreen {
         frame.setVisible(true);
     }
 }
-
-
-
-
-
-
-
-
-
-
-

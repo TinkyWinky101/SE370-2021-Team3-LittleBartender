@@ -18,5 +18,9 @@ public class Main {
         if(checker.getIfLegal()){
            menu.showFrame();
         }
+
+
     }
+
+
 }
