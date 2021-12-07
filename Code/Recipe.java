@@ -4,6 +4,7 @@ import java.util.*;
 public class Recipe extends listObject {
     private String directions;
     private ArrayList<String> ingredients;
+	private boolean favoritedStatus;
 
 
     public Recipe() {
@@ -23,7 +24,6 @@ public class Recipe extends listObject {
 	}
 
 	public void editItem(String i) {
-		
 		for(String item: ingredients){
 			if (item == i){
 				ingredients.remove(item);

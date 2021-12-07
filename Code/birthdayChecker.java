@@ -3,6 +3,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.time.Year;
 import java.util.*;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
 
 public class birthdayChecker extends JPanel {
     private int month;
@@ -29,6 +35,7 @@ public class birthdayChecker extends JPanel {
             }
         }
         return false;
+        
     }
 
     public int convertFromStringToInt(String input){
@@ -60,29 +67,36 @@ public class birthdayChecker extends JPanel {
     public boolean checkIfAnswered(){
         return didAnswer;
     }
-
+    // NEW one
+    
     public birthdayChecker(){
-        JFrame frame = new JFrame("Can You Drink");
-        frame.setVisible(true);
+        JFrame frame = new JFrame("LittleBartender");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(200,200,550,400);
+        frame.setBounds(693,332,500,300);
+        ImageIcon myImage = new ImageIcon("./LittleBartender_Icon.png");
+		frame.setIconImage(myImage.getImage());
 
+        ImageIcon image = new ImageIcon("./bkImage.png");
+        JLabel imageLabel = new JLabel(image);
+        frame.add(imageLabel);     
+        
+        imageLabel.setLayout(new FlowLayout(1, 0, 105));
+       
         JPanel panel = new JPanel();
-        // panel.setLayout(new GridLayout(5,1));
-        panel.setLayout(new FlowLayout());
-        frame.add(panel);
+        panel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder()));
+        panel.setBackground(new Color(54,32,32));        
 
-        JLabel askForYear = new JLabel("What is your birth day?");
-        askForYear.setVisible(true);
-
+        JLabel askForYear = new JLabel("Enter your date of birth:");
+        askForYear.setForeground(Color.white);
         panel.add(askForYear);
-
+    
+        //
         String[] yearSelection = new String[80];
         for(int i = 0; i < 80; i++){
             int calculatedYear = CURRENT_YEAR - i;
             yearSelection[i] = String.valueOf(calculatedYear);
         }
-
+        
         String[] monthSelection = new String[12];
         fillDateArrayGeneric(monthSelection, 12);
 
@@ -104,32 +118,26 @@ public class birthdayChecker extends JPanel {
 
         cy.setVisible(true);
         panel.add(cy);
-
+        
         JButton btn = new JButton("OK");
-        // btn.actionListener(this);
         panel.add(btn);
 
+        imageLabel.add(panel);
+
+        frame.setVisible(true);
+        
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                // String inputMonth = cm.getSelectedItem().toString();
-                // String inputDay = cd.getSelectedItem().toString();
-                // String inputYear = cy.getSelectedItem().toString();
-                // month = convertFromStringToInt(inputMonth);
-                // day = convertFromStringToInt(inputDay);
-                // year = convertFromStringToInt(inputYear);
                 month = cm.getSelectedIndex() + 1;
                 day = cd.getSelectedIndex() + 1;
                 year = CURRENT_YEAR - cy.getSelectedIndex();
                 revalidate();
                 isLegalAdult = checkIfLegal();
                 didAnswer = true;
-                // System.out.println(isLegalAdult);
                 frame.dispose(); //close whether or not isLegalAdult()
                 
             }
         });
-
-        
     }
 }
