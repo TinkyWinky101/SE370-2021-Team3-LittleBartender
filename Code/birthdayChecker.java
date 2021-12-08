@@ -76,7 +76,7 @@ public class birthdayChecker extends JPanel {
         ImageIcon myImage = new ImageIcon("./LittleBartender_Icon.png");
 		frame.setIconImage(myImage.getImage());
 
-        ImageIcon image = new ImageIcon("./bkImage.png");
+        ImageIcon image = new ImageIcon("./LittleBartender_bkImage.png");
         JLabel imageLabel = new JLabel(image);
         frame.add(imageLabel);     
         
