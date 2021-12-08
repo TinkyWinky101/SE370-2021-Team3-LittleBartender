@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Color; 
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
+import javax.swing.text.DefaultStyledDocument.ElementSpec;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.JCheckBox; 
@@ -84,7 +86,7 @@ public class displayRecipe {
         } else {
             displayRecipe.add(new JLabel(new ImageIcon("./drinkImage_Placeholder.jpg")));     // R - Placeholder image for new recipes since we can't add new ones after the fact
         }
-        displayRecipe.add(bottomPanel());
+        displayRecipe.add(bottomPanel(r));
         return displayRecipe;
     }
 
@@ -136,13 +138,32 @@ public class displayRecipe {
         return directionsPanel;        
     }
 
-    private JPanel bottomPanel(){
+    private JPanel bottomPanel(Recipe r){
         JPanel bottomPanel = new JPanel();
         bottomPanel.setBackground(new Color(40,70,101));
         bottomPanel.setLayout(new BorderLayout());
         JCheckBox favorite = new JCheckBox("Favorite");
+        //Set checkbox depending on r
+        if(r.getFavorite() == true){
+            favorite.setSelected(true);
+        }
+        else{
+            favorite.setSelected(false);
+        }
         favorite.setBackground(new Color(40,70,101));
         favorite.setForeground(new Color(240,239,245));
+        //ActionListener would have to be here to access r
+        favorite.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if(favorite.isSelected()){
+                    r.setFavorite();
+                }
+                else{
+                    r.unFavorite();
+                }
+            }
+        });
         exitButton = new JButton("Exit");
         bottomPanel.add(favorite,BorderLayout.CENTER);
         bottomPanel.add(exitButton, BorderLayout.SOUTH);
@@ -156,6 +177,7 @@ public class displayRecipe {
         return blank;
     }
 
+   
     //For the exit button
     private class ExitListener implements ActionListener{
         public void actionPerformed(ActionEvent e){

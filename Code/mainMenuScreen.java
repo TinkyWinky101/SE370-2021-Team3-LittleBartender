@@ -185,6 +185,7 @@ public class mainMenuScreen {
 		//Action listeners
 		buttonViewList.addActionListener(new ListButtonListener());
 		buttonAddRecipe.addActionListener(new AddRecipe());
+		buttonViewFaves.addActionListener(new FavoriteButtonListener());
 		buttonExit.addActionListener(new ExitListener());
 		
 		return buttonPanelA;
@@ -229,6 +230,18 @@ public class mainMenuScreen {
 		
 	}
 
+	private class FavoriteButtonListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			ArrayList<Recipe> items = recipes.getItems();
+			DefaultListModel<String> dlist = new DefaultListModel<String>();
+			for(Recipe i : items){
+				if(i.getFavorite() == true){
+					dlist.addElement(i.getObjectName());
+				}
+			}
+			recipeList.setModel(dlist);
+		}
+	}
 	
 	private class NameSearchListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {

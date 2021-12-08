@@ -60,6 +60,7 @@ public class Recipe extends listObject {
 
     public Recipe() {
         ingredients = "";
+		favoritedStatus = false;
     }
 	
 	public String getDirections() {
@@ -67,6 +68,18 @@ public class Recipe extends listObject {
 	}
 	public void setDirections(String directions) {
 		this.directions = directions;
+	}
+
+	public void setFavorite(){
+		favoritedStatus = true;
+	}
+
+	public void unFavorite(){
+		favoritedStatus = false;
+	}
+
+	public boolean getFavorite(){
+		return favoritedStatus;
 	}
 
 	public void addItem(String i) {
