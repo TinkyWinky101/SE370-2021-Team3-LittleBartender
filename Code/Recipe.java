@@ -3,11 +3,13 @@ import java.util.*;
 
 public class Recipe extends listObject {
     private String directions;
-    private ArrayList<String> ingredients;
+    private String ingredients;
+	private boolean favoritedStatus;
 
 
     public Recipe() {
-        ingredients = new ArrayList<String>();
+        ingredients = "";
+		favoritedStatus = false;
     }
 	
 	public String getDirections() {
@@ -17,33 +19,42 @@ public class Recipe extends listObject {
 		this.directions = directions;
 	}
 
+	public void setFavorite(){
+		favoritedStatus = true;
+	}
+
+	public void unFavorite(){
+		favoritedStatus = false;
+	}
+
+	public boolean getFavorite(){
+		return favoritedStatus;
+	}
+
 	public void addItem(String i) {
-		ingredients.add(i);
+		ingredients = (i);
 		
 	}
 
-	public void editItem(String i) {
+	// public void editItem(String i) {
+	// 	for(String item: ingredients){
+	// 		if (item == i){
+	// 			ingredients.remove(item);
+	// 			ingredients.add(item);
+	// 		}
+	// 	}
 		
-		for(String item: ingredients){
-			if (item == i){
-				ingredients.remove(item);
-				ingredients.add(item);
-			}
-		}
-		
-	}
+	// }
 
 	public String getItem(String name) {
 		String item=null;
-		for(String i: ingredients){
-			if(i == name){
-				item=i;
-			}
-		}
+
+		item = name;
+			
 		return item;
 	}
 
-	public ArrayList<String> getItems() {
+	public String getItems() {
 		
 		return ingredients;
 	}
