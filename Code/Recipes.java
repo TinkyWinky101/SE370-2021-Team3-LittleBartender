@@ -1,47 +1,41 @@
-import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Recipes {
-    private String drinkName;
-    private String mainLiquor;
-    private int servingSize;
-    private double percentAlcohol;
-    private float difficultyLevel;
+	//Since Recipe shares stuff with listObject, this works completely fine.
+	private ArrayList<Recipe> recipes;
+	
+	public Recipes(){
+		recipes = new ArrayList<Recipe>();
+	}
+	
+	public void addItem(Recipe i) {
+		recipes.add(i);
+	}
 
-    public Recipes(){
-        drinkName = "unnamed";
-        mainLiquor = "unknown";
-        servingSize = 0;
-        percentAlcohol = 0.0;
-        difficultyLevel = 0;
-    }
+	public void editItem(Recipe i) {
+	     for(Recipe item: recipes){
+			if (item.getObjectName().equals(i.getObjectName())){
+				recipes.remove(item);
+				recipes.add(i);
+			}
+		}
+		
+	}
 
-    public Recipes(String d, String m, int s, double p, float diff){
-        drinkName = d;
-        mainLiquor = m;
-        servingSize = s;
-        percentAlcohol = p;
-        difficultyLevel = diff;
-    }
+	public Recipe getItem(String name) {
+		Recipe item = null;
+		for(Recipe i: recipes){
+			if(i.getObjectName().equals(name)){
+				item=i;
+			}
+		}
+		return item;
+	}
 
-    // return functions just in case I need something
-    public String getDrinkName(){
-        return drinkName;
-    }
-
-    public String getMainLiquor(){
-        return mainLiquor;
-    }
-
-    public int getServingSIze(){
-        return servingSize;
-    }
-
-    public double getPA(){
-        return percentAlcohol;
-    }
-
-    public float getDifficultyLevel(){
-        return difficultyLevel;
-    }
+	public ArrayList<Recipe> getItems() {
+		
+		return recipes;
+	}
+	
 }

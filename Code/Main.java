@@ -6,6 +6,8 @@ public class Main {
         boolean answered = false;
         mainMenuScreen menu = new mainMenuScreen();
 
+        // menu.showFrame();
+        
         birthdayChecker checker = new birthdayChecker();
         while(answered == false){
             //sleep thread add
@@ -16,5 +18,9 @@ public class Main {
         if(checker.getIfLegal()){
            menu.showFrame();
         }
+
+
     }
+
+
 }
