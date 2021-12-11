@@ -1,3 +1,5 @@
+Labs are going as planned. Nothing wrong yet.
+
 Agenda:
   1. Complete the assigned labs
   2. Implement some GUIs and what not.
