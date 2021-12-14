@@ -1,0 +1,9 @@
+Delegated new tasks this week.
+
+Finished up General design ideas and checked in on already in progress tasks.
+
+Merged all branches and got main updated with the newest code, pulled down newest on all our machines.
+
+Began Ingredient search as well as display recipe page
+
+Tested current features and all are working well.
