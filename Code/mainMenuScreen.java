@@ -39,7 +39,7 @@ public class mainMenuScreen {
 	
 	private Recipes recipes;
 	private ArrayList<String> ingredients;
-	DefaultListModel defaultListModel=new DefaultListModel();
+	DefaultListModel defaultListModel = new DefaultListModel();
 
 
 
@@ -49,6 +49,8 @@ public class mainMenuScreen {
 		recipes = new Recipes();
 		ingredients=new ArrayList<String>();
 
+		//read through text file and add each line that has values delimited by "-" to their respective fields,
+		//then add each of those to recipes to prepopulate the list with recipes.
 
 		try{
 		Scanner input = new Scanner(Paths.get("./Recipes.txt"));
@@ -69,7 +71,7 @@ public class mainMenuScreen {
 
 	}
 
-
+//constructor for the initial jframe.
 	private void newFrame(){
 		windowFrame = new JFrame();
 		windowFrame.setBounds(706,286,492,500);
@@ -77,11 +79,12 @@ public class mainMenuScreen {
 		windowFrame.setTitle("LittleBartender");
 		windowFrame.add(createBorderPanel());
 
-		//Image to replace the default java icon, may need to alter the image path on your system //
+		//Image to replace the default java icon, given universal path //
 		myImage = new ImageIcon("./LittleBartender_Icon.png");
 		windowFrame.setIconImage(myImage.getImage());
 	}
 	
+	//Jpanel for the jframe where content is
 	private JPanel createBorderPanel(){
 
 		borderPanel = new JPanel();
@@ -95,6 +98,7 @@ public class mainMenuScreen {
 
 	}
 	
+	//this is where the list model on the right side of the window is constructed 
 	private JScrollPane createScrollPane(){
 		recipeList = new JList<>();
 		//Add a mouse listener so that 2 clicks here will pull a rec
@@ -106,6 +110,8 @@ public class mainMenuScreen {
 					ArrayList<Recipe>items = recipes.getItems();
 					int index = list.locationToIndex(evt.getPoint());
 
+					//gives functionality after searching for a recipe by matching the updated list model to relevant recipes
+					//so that when they are selected, it transitions to the view of the correct recipe.
 					for(int i = 0; i < items.size(); i++){
 							if(items.get(i).getObjectName().contains(list.getModel().getElementAt(index).toString())){
 								selectedRec = items.get(i);
@@ -114,12 +120,6 @@ public class mainMenuScreen {
 
 					displayRecipe displayer = new displayRecipe(selectedRec);
 					displayer.showFrame();
-
-					// System.out.println(listSize + "       " + recipesListSize);
-					// System.out.println(list.locationToIndex(evt.getPoint()));
-					// System.out.println(list.getModel().toString());
-					// System.out.println(items);
-					// System.out.println(items.get(0).getObjectName());
 				}
 			}
 		});
@@ -128,24 +128,28 @@ public class mainMenuScreen {
 		return scrollPane;
 	}
 	
+	//Grid panel to order where things go inside the content pane. This sets them to a structured size and formatting
+	//without having to individually size and place each element.
 	private JPanel createGridPanel(){
 		//create the main grid panel
 		gridPanel = new JPanel();
         gridPanel.setLayout(new GridLayout(8,1));
 		gridPanel.setBackground(new Color(78,143,175));
 
+		//Recipe name text field
 		recipeNameLabel = new JLabel("Enter Recipe Name");
 		recipeNameTextField = new JTextField();
 		recipeNameTextField.setBackground(new Color(240,239,245));
         recipeNameTextField.setColumns(6);
 
-
+		//Ingredients name text area
 		ingredientNameLabel = new JLabel("Ingredients");
 		ingredientTextArea = new JTextArea();
 		scrollA = new JScrollPane (ingredientTextArea,  JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		ingredientTextArea.setBackground(new Color(240,239,245));
 		ingredientTextArea.setLineWrap(true);
 
+		//Directions text area 
         directionsLabel = new JLabel("Directions");
         directionsTextArea = new JTextArea();
         scrollB = new JScrollPane (directionsTextArea,  JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -153,6 +157,7 @@ public class mainMenuScreen {
 		directionsTextArea.setLineWrap(true);
 		directionsTextArea.setSize(200, 300);
 
+		//adding all elements to the gridPanel.
 		gridPanel.add(recipeNameLabel, BorderLayout.NORTH);
 		gridPanel.add(recipeNameTextField, BorderLayout.NORTH);
 		gridPanel.add(ingredientNameLabel, BorderLayout.NORTH);
@@ -190,7 +195,7 @@ public class mainMenuScreen {
 		
 		return buttonPanelA;
 	}
-	
+	//button panel to hold the Name and ingredients search buttons
 	private JPanel createButtonPanelB(){    	
 		buttonPanelB = new JPanel();
 		buttonPanelB.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -210,6 +215,7 @@ public class mainMenuScreen {
 		return buttonPanelB;
 	}
 
+	//listener to close program on pressing "exit"
 	private class ExitListener implements ActionListener{
 		public void actionPerformed(ActionEvent arg0) {
 			System.exit(0);
@@ -217,7 +223,7 @@ public class mainMenuScreen {
 		}
 		
 	}
-
+//Gets all recipes currently in the recipes list, initially just whats in the text file, then later whats added as well.
 	private class ListButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			ArrayList<Recipe>items = recipes.getItems();
@@ -230,6 +236,7 @@ public class mainMenuScreen {
 		
 	}
 
+	//Listens to the check box for favoriting and carries out the functionality by taliking to the recipe list.
 	private class FavoriteButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			ArrayList<Recipe> items = recipes.getItems();
@@ -243,6 +250,8 @@ public class mainMenuScreen {
 		}
 	}
 	
+//This logic takes the name from the recipename field and checks the list returned by getObjectName from Recipes, and if
+//it is there then adds only the ones with that name to the list model.
 	private class NameSearchListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			ArrayList<Recipe>items = recipes.getItems();
@@ -260,7 +269,8 @@ public class mainMenuScreen {
 
 
 
-
+//searching by ingredient looks at the ingredient text area and if any of the items returned by getItems() contain what is passed, then only those recipes are added
+//to the list model.
 	private class IngredientSearchListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			ArrayList<Recipe>items = recipes.getItems();
@@ -274,6 +284,7 @@ public class mainMenuScreen {
 		}
 	}
 
+	//listens for the add reciupe button to be pressed, and when it does passes the text in each of the fields to a recipe object, that is passed into the recipes array.
 	private class AddRecipe implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			Recipe r = new Recipe();
@@ -285,28 +296,13 @@ public class mainMenuScreen {
 			recipeNameTextField.setText("");
 			directionsTextArea.setText("");
 			ingredients.clear();
-
-			System.out.println(r.getObjectName());
-			System.out.println(r.getItems());
-			System.out.println(r.getDirections());
-			
 		}
 		
 		
 	}
-	
-	private class IngredientListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			
-			String i;
-			i = ingredientTextArea.getText();
-			ingredients.add(i);
-			ingredientTextArea.setText("");			
-			
-		}
-		
-	}
 
+
+	//making sure jframe is set to visible so it renders
     public void showFrame(){
         windowFrame.setVisible(true);
     }

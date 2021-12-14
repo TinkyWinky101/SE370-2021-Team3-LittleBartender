@@ -18,10 +18,9 @@ public class displayRecipe {
     private JFrame frame;
     private JPanel displayRecipe;
     private JPanel recipePanel;
-    //private JLabel nameLabel, ingredientLable, directionLabel;
-    //private JTextField nameField, ingredientField, directionField;
     private JButton exitButton;
 
+    //initial fram constructor for view drink recipe page
     private void createFrame(){
         frame = new JFrame("LittleBartender");
         frame.setBounds(705, 120, 500, 800);
@@ -89,7 +88,7 @@ public class displayRecipe {
         displayRecipe.add(bottomPanel(r));
         return displayRecipe;
     }
-
+//area to hold the name of the recipe at the very top of the display window, with styling.
     private JPanel namePanel(Recipe r){
         JPanel namePanel = new JPanel();
         JLabel rName = new JLabel(r.getObjectName());
@@ -99,7 +98,7 @@ public class displayRecipe {
         namePanel.add(rName);
         return namePanel;
     }
-
+//panel to hold ingredients in a text area, with the relevant styling to make it approachable.
     private JPanel ingredientPanel(Recipe r) {
         JPanel ingredientPanel = new JPanel();
         ingredientPanel.setBackground(Color.WHITE);
@@ -138,6 +137,7 @@ public class displayRecipe {
         return directionsPanel;        
     }
 
+    //the bottom panel of the view recipe area that holds favoriting functionality
     private JPanel bottomPanel(Recipe r){
         JPanel bottomPanel = new JPanel();
         bottomPanel.setBackground(new Color(40,70,101));
@@ -186,21 +186,7 @@ public class displayRecipe {
 
         }
     }
-    //These ones serve to make my job easier
-    /*
-    private void addLabel(JLabel label, String name){
-        label = new JLabel(name);
-        label.setAlignmentX(label.CENTER_ALIGNMENT);
-        displayRecipe.add(label);
-    }
-
-    private void addField(JTextField field, String text){
-        field = new JTextField(text);
-        field.setAlignmentX(field.CENTER_ALIGNMENT);
-        field.setEditable(false);
-        displayRecipe.add(field);
-    }
-    */
+    //grab all ingredients and put them into the relevant box so that the display can have them
 
     private String compileIngredients(Recipe r){
         String ingredientslist = "";
@@ -215,85 +201,3 @@ public class displayRecipe {
         frame.setVisible(true);
     }
 }
-
-// import javax.swing.*;
-
-// import java.awt.Label;
-// import java.awt.event.*;
-
-// public class displayRecipe {
-//     private JFrame frame;
-//     private JPanel displayRecipe;
-//     private JLabel nameLabel, ingredientLable, directionLabel;
-//     private JTextField nameField, ingredientField, directionField;
-//     private JButton exitButton;
-
-//     public displayRecipe(Recipe r){
-//         //Set up the frame and shit
-//         createFrame();
-
-//         displayRecipe = new JPanel();
-//         displayRecipe.setLayout(new BoxLayout(displayRecipe, BoxLayout.Y_AXIS));
-//         frame.add(displayRecipe);
-        
-//         // Add them
-//         addLabel(nameLabel, "Name");
-//         addField(nameField, r.getObjectName());
-
-//         String compilationOfIngredients = compileIngredients(r);
-        
-//         addLabel(ingredientLable, "Ingredients");
-//         addField(ingredientField, compilationOfIngredients);
-
-//         addLabel(directionLabel, "Directions");
-//         addField(directionField, r.getDirections());
-
-//         exitButton = new JButton("Exit");
-//         displayRecipe.add(exitButton);
-
-//         exitButton.addActionListener(new ExitListener());
-
-//     }
-//     //For the exit button
-//     private class ExitListener implements ActionListener{
-//         public void actionPerformed(ActionEvent e){
-//             frame.dispose();
-
-
-//         }
-//     }
-//     //These ones serve to make my job easier
-//     private void createFrame(){
-//         frame = new JFrame("View Recipe");
-//         frame.setBounds(200, 200, 1000, 800);
-//         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//         frame.setVisible(false);
-
-//     }
-
-//     private void addLabel(JLabel label, String name){
-//         label = new JLabel(name);
-//         label.setAlignmentX(label.CENTER_ALIGNMENT);
-//         displayRecipe.add(label);
-//     }
-
-//     private void addField(JTextField field, String text){
-//         field = new JTextField(text);
-//         field.setAlignmentX(field.CENTER_ALIGNMENT);
-//         field.setEditable(false);
-//         displayRecipe.add(field);
-//     }
-
-//     private String compileIngredients(Recipe r){
-//         String ingredientslist = "";
-//         // for(int i = 0; i < r.getItems().size(); i++){
-//         //     ingredientslist += (r.getItems().get(i) + ", ");
-//         // }
-//         ingredientslist = r.getItems();
-//         return ingredientslist;
-//     }
-
-//     public void showFrame(){
-//         frame.setVisible(true);
-//     }
-// }

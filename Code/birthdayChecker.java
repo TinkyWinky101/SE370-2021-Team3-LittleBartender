@@ -103,7 +103,6 @@ public class birthdayChecker extends JPanel {
         String[] daySelection = new String[31];
         fillDateArrayGeneric(daySelection, 31);
 
-        //refactor the following
         final JComboBox<String> cm = new JComboBox<String>(monthSelection);
 
         cm.setVisible(true);
